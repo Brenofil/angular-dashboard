@@ -1,32 +1,37 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(waitForAsync(() => {
+    fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!!');
+    component = fixture.componentInstance;
   }));
+
+  it('should create the app', waitForAsync(() => {
+    expect(component).toBeTruthy();
+  }));
+
+  it(`should have as title 'Angular-Dashboard'`, waitForAsync(() => {
+    expect(component.title).toEqual('Angular-Dashboard');
+  }));
+
+  it('should render a router-outlet tag', waitForAsync(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
+  }));
+
 });
