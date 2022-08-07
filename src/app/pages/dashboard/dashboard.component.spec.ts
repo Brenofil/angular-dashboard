@@ -27,8 +27,13 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   }));
 
+  it('component should be defined', () => {
+    expect(component).toBeDefined();
+  });
+
   it('should have chart color ', () => {
     expect(component.chartColor).toBe('#FFFFFF');
   });
+
 
 });
